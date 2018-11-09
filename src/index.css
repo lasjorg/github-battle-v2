@@ -1,0 +1,159 @@
+/* MAIN */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  padding: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #e0021e;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+}
+
+.column input {
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 4px;
+  width: 80%;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.43);
+}
+
+.column label {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+/* NAV */
+
+.nav {
+  display: flex;
+}
+
+.nav > li {
+  margin-right: 15px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+/* BATTLE */
+
+.reset {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #d0021b;
+  background: transparent;
+  border: none;
+}
+
+.reset:hover {
+  cursor: pointer;
+}
+
+/* HOME */
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+  color: #e6e6e6;
+  background: #0a0a0a;
+  border: none;
+  border-radius: 3px;
+  width: 200px;
+  padding: 7px 0;
+  margin: 10px auto;
+}
+
+.button:hover:enabled {
+  background: linear-gradient(#1a1a1a,#0a0a0a);
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+/* POPULAR */
+
+.langs {
+  display: flex;
+  justify-content: center;
+}
+
+.langs > li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.popular-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.popular-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.popular-rank {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.space-list-item {
+  margin-bottom: 7px;
+}
+
+.avatar {
+  width: 150px;
+  border-radius: 50%;
+}
