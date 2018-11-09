@@ -66,17 +66,14 @@ class Popular extends Component {
     this.updateLang(this.state.selectedLanguage);
   }
 
-  updateLang = lang => {
+  updateLang = async lang => {
     this.setState({
       selectedLanguage: lang,
       repos: null
     });
 
-    fetchPopularRepos(lang).then(repos => {
-      this.setState({
-        repos
-      });
-    });
+    const repos = await fetchPopularRepos(lang);
+    this.setState(() => ({ repos }));
   };
 
   render() {

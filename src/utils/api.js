@@ -2,16 +2,16 @@ import axios from 'axios';
 // TODO: Better error handling
 // Battling users that do not exist causes a TypeError in Results.js
 
-const getProfile = username => {
-  return axios
-    .get(`http://api.github.com/users/${username}`)
-    .then(({ data }) => data);
+const getProfile = async username => {
+  const profile = await axios.get(`http://api.github.com/users/${username}`).catch(handleError);
+
+  return profile.data;
 };
 
 const getRepos = username => {
   return axios.get(
     `http://api.github.com/users/${username}/repos?&per_page=100`
-  );
+  ).catch(handleError)
 };
 
 const getStarCount = repos => {
@@ -30,31 +30,38 @@ const handleError = error => {
   return null;
 };
 
-const getUserData = player => {
-  return Promise.all([getProfile(player), getRepos(player)]).then(
-    ([profile, repos]) => ({
-      profile,
-      score: calculateScore(profile, repos)
-    })
-  );
+const getUserData = async player => {
+  const [profile, repos] = await Promise.all([
+    getProfile(player),
+    getRepos(player)
+  ]).catch(handleError);
+
+  return {
+    profile,
+    score: calculateScore(profile, repos)
+  };
 };
 
 const sortPlayers = players => {
   return players.sort((a, b) => b.score - a.score);
 };
 
-const battle = players => {
-  return Promise.all(players.map(getUserData))
-    .then(sortPlayers)
-    .catch(handleError);
+const battle = async players => {
+  const results = await Promise.all(players.map(getUserData)).catch(
+    handleError
+  );
+
+  return results === null ? results : sortPlayers(results);
 };
 
-const fetchPopularRepos = lang => {
+const fetchPopularRepos = async lang => {
   const encodeURI = window.encodeURI(
     `https://api.github.com/search/repositories?q=stars:>1+language:${lang}&sort=stars&order=desc&type=Repositories`
   );
 
-  return axios.get(encodeURI).then(({ data }) => data.items);
+  const repos = await axios.get(encodeURI).catch(handleError);
+
+  return repos.data.items;
 };
 
 export { fetchPopularRepos, battle };
