@@ -2,14 +2,14 @@
 // Battling users that do not exist causes a TypeError in Results.js
 
 const getProfile = async username => {
-  const response = await fetch(`http://api.github.com/users/${username}`);
+  const response = await fetch(`https://api.github.com/users/${username}`);
 
   return response.json();
 };
 
 const getRepos = async username => {
   const response = await fetch(
-    `http://api.github.com/users/${username}/repos?&per_page=100`
+    `https://api.github.com/users/${username}/repos?&per_page=100`
   )
   return response.json();
 };
