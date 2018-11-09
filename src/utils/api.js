@@ -1,4 +1,3 @@
-import axios from 'axios';
 // TODO: Better error handling
 // Battling users that do not exist causes a TypeError in Results.js
 
