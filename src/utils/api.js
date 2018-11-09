@@ -3,19 +3,20 @@ import axios from 'axios';
 // Battling users that do not exist causes a TypeError in Results.js
 
 const getProfile = async username => {
-  const profile = await axios.get(`http://api.github.com/users/${username}`).catch(handleError);
+  const response = await fetch(`http://api.github.com/users/${username}`);
 
-  return profile.data;
+  return response.json();
 };
 
-const getRepos = username => {
-  return axios.get(
+const getRepos = async username => {
+  const response = await fetch(
     `http://api.github.com/users/${username}/repos?&per_page=100`
-  ).catch(handleError)
+  )
+  return response.json();
 };
 
 const getStarCount = repos => {
-  return repos.data.reduce(
+  return repos.reduce(
     (count, { stargazers_count }) => count + stargazers_count,
     0
   );
@@ -59,9 +60,11 @@ const fetchPopularRepos = async lang => {
     `https://api.github.com/search/repositories?q=stars:>1+language:${lang}&sort=stars&order=desc&type=Repositories`
   );
 
-  const repos = await axios.get(encodeURI).catch(handleError);
+  const response = await fetch(encodeURI).catch(handleError);
 
-  return repos.data.items;
+  const repos = await response.json();
+
+  return repos.items;
 };
 
 export { fetchPopularRepos, battle };
