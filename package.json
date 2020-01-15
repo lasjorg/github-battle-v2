@@ -28,6 +28,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "firebase-tools": "^6.0.1"
+    "firebase-tools": "^7.12.1"
   }
 }
